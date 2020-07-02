@@ -74,6 +74,13 @@ To start the react app navigate to the client directory
          password String
        }
 ```
+* /customers [POST] [GET]
+```....
+```
+* /paymentmethods [POST] [GET]
+```....
+```
+
 ## Routes
 * /login
 
@@ -81,6 +88,9 @@ To start the react app navigate to the client directory
 
 * /session
 
+* /paymentmethods
+
+* /customers
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
