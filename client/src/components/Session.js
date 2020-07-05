@@ -21,7 +21,7 @@ const Session = ({ history }) => {
           Accept: 'application/json',
           Authorization: document.cookie,
         },
-      }).then(res => res.json())
+      }).then((res) => res.json())
 
       const { success, user } = res
       if (!success) {
@@ -38,6 +38,10 @@ const Session = ({ history }) => {
     history.push('/login')
   }
 
+  const goTo = (route) => {
+    history.push(`/${route}`)
+  }
+
   useEffect(() => {
     if (history.location.state) {
       return setState({ ...state, user: { ...history.location.state } })
@@ -47,7 +51,7 @@ const Session = ({ history }) => {
 
   return (
     <div className="wrapper">
-      <h1>Welcome, {user && user.name}</h1>
+      <h1>Welcome...., {user && user.name}</h1>
       {user && user.email}
       <div className="message">
         {isFetching ? 'fetching details..' : message}
@@ -56,10 +60,18 @@ const Session = ({ history }) => {
       <button
         style={{ height: '30px' }}
         onClick={() => {
-         handleLogout()
+          handleLogout()
         }}
       >
         logout
+      </button>
+      <button
+        style={{ height: '30px' }}
+        onClick={() => {
+          goTo('customers')
+        }}
+      >
+        Customers
       </button>
     </div>
   )
