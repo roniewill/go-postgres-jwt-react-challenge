@@ -4,8 +4,11 @@
   "description": "authentication with react and go",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.5.0",
+    "lodash": "^4.17.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-icons": "^3.10.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "1.1.4"
   },

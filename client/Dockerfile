@@ -1,6 +1,6 @@
-FROM node:8
+FROM node:12-alpine
 
-WORKDIR /src
+WORKDIR /app
 COPY . ./
 
 RUN yarn install

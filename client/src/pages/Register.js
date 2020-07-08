@@ -13,11 +13,11 @@ const Register = ({ history }) => {
 
   const { email, password, name, message, isSubmitting, errors } = state
 
-  const handleChange = async e => {
+  const handleChange = async (e) => {
     await setState({ ...state, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     setState({ ...state, isSubmitting: true })
 
     const { email, password, name } = state
@@ -32,7 +32,7 @@ const Register = ({ history }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then(res => res.json())
+      }).then((res) => res.json())
       const { success, msg, errors } = res
 
       if (!success) {
@@ -54,7 +54,7 @@ const Register = ({ history }) => {
         placeholder="Name"
         value={name}
         name="name"
-        onChange={e => {
+        onChange={(e) => {
           handleChange(e)
         }}
       />
@@ -64,7 +64,7 @@ const Register = ({ history }) => {
         placeholder="Email"
         value={email}
         name="email"
-        onChange={e => {
+        onChange={(e) => {
           handleChange(e)
         }}
       />
@@ -74,15 +74,21 @@ const Register = ({ history }) => {
         placeholder="Password"
         value={password}
         name="password"
-        onChange={e => {
+        onChange={(e) => {
           handleChange(e)
         }}
       />
 
-      <button disabled={isSubmitting} onClick={() => handleSubmit()}>
+      <button
+        className="btn-mshield"
+        disabled={isSubmitting}
+        onClick={() => handleSubmit()}
+      >
         {isSubmitting ? '.....' : 'Sign Up'}
       </button>
-      <div className="message">{message && <p>&bull; {message}</p>}</div>
+      {message && (
+        <div className="message">{message && <p>&bull; {message}</p>}</div>
+      )}
       <div>
         {errors &&
           errors.map((error, id) => {

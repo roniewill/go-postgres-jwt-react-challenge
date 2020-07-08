@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { apiURl } from '../api'
-import { deleteCookie } from '../utils'
+
+import { Context } from '../Context/AuthContext'
 
 const Session = ({ history }) => {
   const [state, setState] = useState({
@@ -10,6 +11,8 @@ const Session = ({ history }) => {
   })
 
   const { isFetching, message, user = {} } = state
+
+  const { handleLogout } = useContext(Context)
 
   const getUserInfo = async () => {
     setState({ ...state, isFetching: true, message: 'fetching details...' })
@@ -23,23 +26,12 @@ const Session = ({ history }) => {
         },
       }).then((res) => res.json())
 
-      const { success, user } = res
-      if (!success) {
-        history.push('/login')
-      }
+      const { user } = res
+
       setState({ ...state, user, message: null, isFetching: false })
     } catch (e) {
       setState({ ...state, message: e.toString(), isFetching: false })
     }
-  }
-
-  const handleLogout = () => {
-    deleteCookie('token')
-    history.push('/login')
-  }
-
-  const goTo = (route) => {
-    history.push(`/${route}`)
   }
 
   useEffect(() => {
@@ -51,27 +43,18 @@ const Session = ({ history }) => {
 
   return (
     <div className="wrapper">
-      <h1>Welcome...., {user && user.name}</h1>
+      <h1>Welcome, {user && user.name}</h1>
       {user && user.email}
       <div className="message">
         {isFetching ? 'fetching details..' : message}
       </div>
 
       <button
-        style={{ height: '30px' }}
-        onClick={() => {
-          handleLogout()
-        }}
+        className="btn-mshield"
+        style={{ height: '40px' }}
+        onClick={handleLogout}
       >
         logout
-      </button>
-      <button
-        style={{ height: '30px' }}
-        onClick={() => {
-          goTo('customers')
-        }}
-      >
-        Customers
       </button>
     </div>
   )

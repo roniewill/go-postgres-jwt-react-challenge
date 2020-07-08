@@ -8,19 +8,20 @@
 
 .input {
   width: 50vw;
-  margin: 20px;
-  height: 2rem;
+  margin: 10px;
+  height: 1rem;
   font-size: 1.2em;
   width: 300px;
   border: 3px solid #d2ddec;
-  padding: 10px;
+  padding: 25px;
   outline: 0;
 }
-.message{
-    font-size: 1.2em;
-    margin-top:10px;
+.message {
+  font-size: 1.2em;
+  margin-top: 10px;
 }
-button {
+
+.btn-mshield {
   width: 150px;
   height: 50px;
   font-size: 1.2em;
@@ -28,4 +29,13 @@ button {
   cursor: pointer;
   color: #fff;
   background-color: #01506f;
+}
+
+.disabled {
+  background-color: #01506fb8;
+}
+
+.btn-sm {
+  width: 50px;
+  height: 30px;
 }
